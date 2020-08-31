@@ -2,11 +2,15 @@ import React from 'react';
 import Input from './Input';
 import Filter from './Filter';
 
-export default function Form({ text,
-    state,
-    setState,
+export default function Form({ 
+    text,
+    setText,
+    filter,
+    setFilter,
     handleChange,
-    handleClick, }) {
+    handleClick,
+    completelist,
+    setCompletelist }) {
 
     return (
         <div className="search-top">
@@ -16,10 +20,13 @@ export default function Form({ text,
                     handleChange={handleChange}
                     handleClick={handleClick}
                     text={text}
+                    setText={setText}
+                    completelist={completelist}
+                    setCompletelist={setCompletelist}
                 />
                 <Filter 
-                    state={state}
-                    setState={setState}
+                    filter={filter}
+                    setFilter={setFilter}
                 />
             </div>
         </div>

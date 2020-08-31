@@ -1,78 +1,52 @@
 import React, {useState, useEffect} from 'react';
-import uuid from 'react-uuid';
 import Form from './components/Form';
 import TodoList from './components/TodoList';
 import './App.css';
 
 export default function App() {
-
-  //texto del input
   const [text, setText] = useState('');
-
-  //lista completa
-  const [list, setList] = useState([]);
-
-  // value del filtro
-  const [state, setState] = useState('');
-
-  // lista filtrada
-  const [filter, setFilter] = useState([]);
-
-  // const [checked, setChecked] = useState(false);
+  const [completelist, setCompletelist] = useState([]);
+  const [filter, setFilter] = useState('');
+  const [filteredlist, setFilteredlist] = useState([]);
 
 
 
   useEffect(() => {
     handleFilter();
-  }, [state, list])
+  }, [filter, completelist])
 
   const handleChange = (e) => {
     setText(e.target.value)
   }
   
-  const handleFilter = (e) => {
-    switch(state) {
+  const handleFilter = () => {
+    switch(filter) {
       case 'complete':
-        setFilter(list.filter(todo => todo.checked === true))
+        setFilteredlist(completelist.filter(todo => todo.checked === true))
         break;
       case 'incomplete':
-        setFilter(list.filter(todo => todo.checked === false))
+        setFilteredlist(completelist.filter(todo => todo.checked === false))
         break;
       default:
-        setFilter(list);
-    }
-  }
-
-  const handleClick = (e) => {
-    if (text.length < 1) {
-        e.preventDefault();
-    } else {
-        setList([
-            ...list, {
-                text: text,
-                checked: false,
-                id: uuid()
-            }
-        ])
-        setText('')
+        setFilteredlist(completelist);
     }
   }
 
   return (
     <div>
       <Form 
-        state={state}
-        setState={setState}
+        filter={filter}
+        setFilter={setFilter}
         text={text}
         setText={setText}
-        list={list}
-        setList={setList}
+        completelist={completelist}
+        setCompletelist={setCompletelist}
         handleChange={handleChange}
-        handleClick={handleClick}
       />
       <TodoList
-        list={list}
-        filter={filter}
+        completelist={completelist}
+        setCompletelist={setCompletelist}
+        filteredlist={filteredlist}
       />
     </div>
   )
