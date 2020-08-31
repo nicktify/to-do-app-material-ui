@@ -9,8 +9,6 @@ export default function App() {
   const [filter, setFilter] = useState('');
   const [filteredlist, setFilteredlist] = useState([]);
 
-
-
   useEffect(() => {
     handleFilter();
   }, [filter, completelist])

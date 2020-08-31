@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Filter({filter, setFilter}) {
     const classes = useStyles();
-
     const handleFilter = (e) => {
         setFilter(e.target.value);
     } 

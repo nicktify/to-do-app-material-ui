@@ -24,7 +24,7 @@ export default function Input({completelist, setCompletelist, handleChange, text
             ])
             setText('')
         }
-      }
+    }
 
     const classes = useStyles();
 
