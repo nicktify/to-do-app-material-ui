@@ -6,7 +6,7 @@ export default function Form({ text,
     state,
     setState,
     handleChange,
-    handleClick }) {
+    handleClick, }) {
 
     return (
         <div className="search-top">

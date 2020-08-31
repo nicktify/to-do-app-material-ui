@@ -9,7 +9,7 @@ export default function App() {
   //texto del input
   const [text, setText] = useState('');
 
-  //lista de todos
+  //lista completa
   const [list, setList] = useState([]);
 
   // value del filtro
@@ -22,26 +22,26 @@ export default function App() {
 
 
 
-  // useEffect(() => {
-  //   handleFilter();
-  // }, [state, list])
+  useEffect(() => {
+    handleFilter();
+  }, [state, list])
 
   const handleChange = (e) => {
     setText(e.target.value)
   }
   
-  // const handleFilter = () => {
-  //   switch(state) {
-  //     case 'complete':
-  //       setFilter(list.filter(list => list.checked === true))
-  //       break;
-  //     case 'incomplete':
-  //       setFilter(list.filter(list => list.checked === false))
-  //       break;
-  //     default:
-  //       setFilter(list);
-  //   }
-  // }
+  const handleFilter = (e) => {
+    switch(state) {
+      case 'complete':
+        setFilter(list.filter(todo => todo.checked === true))
+        break;
+      case 'incomplete':
+        setFilter(list.filter(todo => todo.checked === false))
+        break;
+      default:
+        setFilter(list);
+    }
+  }
 
   const handleClick = (e) => {
     if (text.length < 1) {
@@ -58,10 +58,6 @@ export default function App() {
     }
   }
 
-  const handleCheckedChange = () => {
-    
-  }
-  
   return (
     <div>
       <Form 
@@ -77,7 +73,6 @@ export default function App() {
       <TodoList
         list={list}
         filter={filter}
-        handleCheckedChange={handleCheckedChange}
       />
     </div>
   )

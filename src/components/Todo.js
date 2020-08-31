@@ -6,7 +6,7 @@ export default function Todo({text, checked, handleCheckedChange}) {
     return (
             <div className="todo">
                 <Checkbox
-                    checked={checked}
+                    checked={(checked) ? true : false}
                     color="primary"
                     onChange={handleCheckedChange}
                 />

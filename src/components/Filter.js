@@ -11,9 +11,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Filter({state, setState}) {
     const classes = useStyles();
 
-    const filterChange = (e) => {
-        setState(e.target.value)
-    }
+    const handleFilter = (e) => {
+        setState(e.target.value);
+    } 
     
     return (
         <FormControl className={classes.root}>
@@ -22,11 +22,9 @@ export default function Filter({state, setState}) {
                 labelId="demo-customized-select-label"
                 id="demo-customized-select"
                 value={state}
-                onChange={filterChange}
+                onChange={handleFilter}
+                defaultValue={'all'}
             >
-                <MenuItem value="">
-                    <em>None</em>
-                </MenuItem>
                 <MenuItem value={'all'}>ALL</MenuItem>
                 <MenuItem value={'complete'}>COMPLETE</MenuItem>
                 <MenuItem value={'incomplete'}>INCOMPLETE</MenuItem>
