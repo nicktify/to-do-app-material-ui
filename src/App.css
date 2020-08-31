@@ -12,8 +12,9 @@ body {
   font-size: 30px;
 }
 
-.search {
-  margin: auto;
+.add-text {
+  display: flex;
+  justify-content: center;
 }
 
 .current-tasks {

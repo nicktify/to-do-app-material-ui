@@ -1,18 +1,14 @@
 import React from 'react';
 import { Checkbox } from '@material-ui/core';
 
-export default function Todo({checked, setChecked, text}) {
-
-    const handleChange = (e) => {
-        setChecked(e.target.checked)
-    }
-
+export default function Todo({text, checked, handleCheckedChange}) {
+    
     return (
             <div className="todo">
-                <Checkbox 
-                    color="primary"
+                <Checkbox
                     checked={checked}
-                    onChange={handleChange}
+                    color="primary"
+                    onChange={handleCheckedChange}
                 />
                 {text}
         </div>
