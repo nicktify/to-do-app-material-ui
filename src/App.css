@@ -1,5 +1,5 @@
 body {
-  font-family: roboto;
+  font-family: 'Fredoka One', cursive;
 }
 
 .addIcon {
@@ -26,4 +26,5 @@ body {
 .todo {
   width: 556px;
   margin: auto;
+  justify-content: center;
 }

@@ -5,7 +5,8 @@ import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles((theme) => ({
     addIcon: {
-        marginLeft: theme.spacing(2)
+        marginLeft: theme.spacing(2),
+        cursor: 'pointer',
     }
 }));
 
