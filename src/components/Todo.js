@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Checkbox, makeStyles } from '@material-ui/core';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
@@ -11,12 +11,16 @@ const styles = makeStyles((theme) => ({
     }
 }))
 
-export default function Todo({text, checked, todo, completelist, setCompletelist}) {
+export default function Todo({text, checked, todo, completelist, setCompletelist, editing}) {
+
+    const [editedText, setEditedText] = useState('');
+
     const handleChange = () => {
         setCompletelist(completelist.map((item) => {
             if (item.id === todo.id) {
                 return {
-                    ...item, checked: !item.checked
+                    ...item,
+                    checked: !item.checked
                 }
             }
             return item;
@@ -25,6 +29,23 @@ export default function Todo({text, checked, todo, completelist, setCompletelist
 
     const handleDelete = () => {
         setCompletelist(completelist.filter((item) => item.id !== todo.id))
+    }
+
+    const handleEdit = (e) => {
+        handleEditing(e);
+    }
+
+    const handleEditing = (e) => {
+        console.log(e)
+        setCompletelist(completelist.map((item) => {
+            if (item.id === todo.id) {
+                return {
+                    ...item,
+                    editing: !todo.editing,
+                    text: editedText
+                }
+            }
+        }))
     }
 
     const classes = styles();
@@ -36,7 +57,18 @@ export default function Todo({text, checked, todo, completelist, setCompletelist
                 color="primary"
                 onChange={handleChange}
             />
-            {text}
+            <div
+                onClick={handleEdit}
+            >
+            {(!todo.editing) 
+                ? text 
+                : <input 
+                        
+                    value={todo.text}
+                    onChange={handleEditing}
+                />
+            }
+            </div>
             <DeleteForeverIcon 
                 className={classes.deleteIcon}
                 onClick={handleDelete}

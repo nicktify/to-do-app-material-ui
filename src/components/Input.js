@@ -20,10 +20,28 @@ export default function Input({completelist, setCompletelist, handleChange, text
                 ...completelist, {
                     text: text,
                     checked: false,
+                    editing: false,
                     id: uuid()
                 }
             ])
             setText('')
+        }
+    }
+
+    const handleEnter = (e) => {
+        if (e.key === 'Enter') {
+            if (text < 1) {
+                e.preventDefault();
+            } else {
+                setCompletelist([
+                    ...completelist, {
+                        text: text,
+                        checked: false,
+                        id: uuid()
+                    }
+                ])
+                setText('')
+            }
         }
     }
 
@@ -33,11 +51,13 @@ export default function Input({completelist, setCompletelist, handleChange, text
         <div>
             <TextField
                     id="outlined-basic"
-                    label="TYPE A TO DO"
+                    label="Write something you need to remember"
                     variant="outlined"
                     value={text}
                     onChange={handleChange}
                     style={{ width: 500 }}
+                    onKeyDown={handleEnter}
+                    
                 />
                 <AddIcon
                     className={classes.addIcon}

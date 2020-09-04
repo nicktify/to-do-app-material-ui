@@ -1,7 +1,7 @@
 import React from 'react';
 import Todo from './Todo';
 
-export default function TodoList({filteredlist, completelist, setCompletelist}) {
+export default function TodoList({filteredlist, completelist, setCompletelist, setText}) {
     return (
         <div className="current-tasks">
             {
@@ -13,6 +13,7 @@ export default function TodoList({filteredlist, completelist, setCompletelist}) 
                         checked={todo.checked}
                         completelist={completelist}
                         setCompletelist={setCompletelist}
+                        editing={todo.editing}
                     />
                 ))
             }

@@ -45,6 +45,7 @@ export default function App() {
         completelist={completelist}
         setCompletelist={setCompletelist}
         filteredlist={filteredlist}
+        setText={setText}
       />
     </div>
   )

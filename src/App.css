@@ -26,5 +26,5 @@ body {
 .todo {
   width: 556px;
   margin: auto;
-  justify-content: center;
+  display: flex;
 }
