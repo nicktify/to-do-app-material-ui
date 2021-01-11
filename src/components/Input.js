@@ -55,7 +55,7 @@ export default function Input({completelist, setCompletelist, handleChange, text
                     variant="outlined"
                     value={text}
                     onChange={handleChange}
-                    style={{ width: 500 }}
+                    style={{ width: 600 }}
                     onKeyDown={handleEnter}
                     
                 />

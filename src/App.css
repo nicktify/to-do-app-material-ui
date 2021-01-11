@@ -21,10 +21,10 @@ body {
   margin: auto;
   margin-top: 30px;
   font-size: 30px;
+  width: 80vw;
 }
 
 .todo {
-  width: 556px;
-  margin: auto;
   display: flex;
+  justify-content: center;
 }

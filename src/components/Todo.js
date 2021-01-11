@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Checkbox, makeStyles } from '@material-ui/core';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import uuid from 'react-uuid';
 
 const styles = makeStyles((theme) => ({
     deleteIcon: {
@@ -13,7 +14,7 @@ const styles = makeStyles((theme) => ({
 
 export default function Todo({text, checked, todo, completelist, setCompletelist, editing}) {
 
-    const [editedText, setEditedText] = useState('');
+    const [editedText, setEditedText] = useState(text);
 
     const handleChange = () => {
         setCompletelist(completelist.map((item) => {
@@ -32,12 +33,20 @@ export default function Todo({text, checked, todo, completelist, setCompletelist
     }
 
     const handleEdit = (e) => {
-        handleEditing(e);
+        setCompletelist(completelist.map(todo => {
+            if (todo.text === text) {
+                let newTodo = todo;
+                newTodo.editing = true;
+                return newTodo
+            }
+            return todo;
+        }))
     }
 
     const handleEditing = (e) => {
         console.log(e)
-        setCompletelist(completelist.map((item) => {
+        setEditedText(e.target.value)
+        /*setCompletelist(completelist.map((item) => {
             if (item.id === todo.id) {
                 return {
                     ...item,
@@ -45,8 +54,27 @@ export default function Todo({text, checked, todo, completelist, setCompletelist
                     text: editedText
                 }
             }
-        }))
+        }))*/
     }
+
+    const handleEnter = (e) => {
+        if (e.key === 'Enter') {
+            if (text < 1) {
+                e.preventDefault();
+            } else {
+                 setCompletelist(completelist.map(todo => {
+                    if (todo.editing === true) {
+                        let newTodo = todo;
+                        newTodo.text = editedText;
+                        newTodo.editing = false;
+                        return newTodo
+                    }
+                    return todo;
+                }))
+            }
+        }
+    }
+
 
     const classes = styles();
 
@@ -59,20 +87,37 @@ export default function Todo({text, checked, todo, completelist, setCompletelist
             />
             <div
                 onClick={handleEdit}
+                style={{
+                    marginRight: '30px',
+                    display: 'flex'
+                }}
             >
-            {(!todo.editing) 
+            {(!editing) 
                 ? text 
-                : <input 
-                        
-                    value={todo.text}
-                    onChange={handleEditing}
-                />
+                :   <input 
+                        autoFocus
+                        value={editedText}
+                        onChange={handleEditing}
+                        onKeyDown={handleEnter}
+                        style={{
+                            margin: 'auto',
+                            fontFamily: 'inherit',
+                            fontSize: '30px'
+                        }}
+                    />
             }
             </div>
-            <DeleteForeverIcon 
-                className={classes.deleteIcon}
-                onClick={handleDelete}
-            />
+            {(!editing)
+                ?   <DeleteForeverIcon 
+                        className={classes.deleteIcon}
+                        onClick={handleDelete}
+                    />
+                :  
+                    <p
+                        style={{marginLeft: '10px;'}}
+                    >Press Enter key to save</p>
+            }
+            
         </div>
     )
 }
