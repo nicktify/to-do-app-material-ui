@@ -4,7 +4,7 @@ let initialState = {
   todo: []
 };
 
-export const NotesReducer = (state = initialState, action) => {
+export const TodoReducer = (state = initialState, action) => {
   if (action.type === CREATE_TODO) {
     return {
       todo: [...state.todo, action.payload]
