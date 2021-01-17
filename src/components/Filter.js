@@ -8,10 +8,9 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function Filter({filter, setFilter}) {
+export default function Filter() {
     const classes = useStyles();
     const handleFilter = (e) => {
-        setFilter(e.target.value);
     } 
     
     return (
@@ -20,7 +19,6 @@ export default function Filter({filter, setFilter}) {
             <Select
                 labelId="demo-customized-select-label"
                 id="demo-customized-select"
-                value={filter}
                 onChange={handleFilter}
                 defaultValue={'all'}
             >

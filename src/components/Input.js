@@ -10,42 +10,16 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function Input({completelist, setCompletelist, handleChange, text, setText}) {
+export default function Input() {
 
+    const classes = useStyles();
+    
     const handleClick = (e) => {
-        if (text < 1) {
-           e.preventDefault();
-        } else {
-            setCompletelist([
-                ...completelist, {
-                    text: text,
-                    checked: false,
-                    editing: false,
-                    id: uuid()
-                }
-            ])
-            setText('')
-        }
     }
 
     const handleEnter = (e) => {
-        if (e.key === 'Enter') {
-            if (text < 1) {
-                e.preventDefault();
-            } else {
-                setCompletelist([
-                    ...completelist, {
-                        text: text,
-                        checked: false,
-                        id: uuid()
-                    }
-                ])
-                setText('')
-            }
-        }
     }
 
-    const classes = useStyles();
 
     return (
         <div>
@@ -53,8 +27,6 @@ export default function Input({completelist, setCompletelist, handleChange, text
                     id="outlined-basic"
                     label="Write something you need to remember"
                     variant="outlined"
-                    value={text}
-                    onChange={handleChange}
                     style={{ width: 600 }}
                     onKeyDown={handleEnter}
                     
