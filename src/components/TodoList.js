@@ -1,11 +1,30 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import Todo from './Todo';
 
-export default function TodoList() {
+const TodoList = ({todos}) => {
 
   return (
     <div>
+      TODO LIST
+      {
+        todos.map(todo => (
+          <div>
+            <Todo 
+              
+            />
+          </div>
+        ))
+      }
     </div>
   )
 
 }
+
+const mapStateToProps = (state) => {
+  return {
+    todos: state.todos
+  }
+}
+
+export default connect(mapStateToProps)(TodoList);
