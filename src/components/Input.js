@@ -25,12 +25,12 @@ const Input = ({createTodo}) => {
     
     const handleCreateTodo = () => {
         createTodo({
+            id: uuid(),
             text: input,
             checked: false,
-            id: uuid(),
             editing: false
         });
-        setInput('')
+        setInput('');
     }
 
     const handleClick = () => {

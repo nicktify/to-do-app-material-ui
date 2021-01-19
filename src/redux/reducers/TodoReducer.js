@@ -13,11 +13,11 @@ export const TodoReducer = (state = initialState, action) => {
 
   if (action.type === EDIT_TODO) {
     return {
-      todos: state.map(e => {
-        if (e.id === action.payload) {
+      todos: state.todos.map(todo => {
+        if (todo.id === action.payload.id) {
           return action.payload
         } else {
-          return e;
+          return todo; 
         }
       })
     }
@@ -25,7 +25,7 @@ export const TodoReducer = (state = initialState, action) => {
 
   if (action.type === DELETE_TODO) {
     return {
-      todos: state.filter(e => e.id !== action.payload)
+      todos: state.todos.filter(todo => todo.id !== action.payload)
     }
   }
 
