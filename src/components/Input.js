@@ -26,7 +26,7 @@ const Input = ({createTodo}) => {
     const handleCreateTodo = () => {
         createTodo({
             text: input,
-            done: false,
+            checked: false,
             id: uuid(),
             editing: false
         });
@@ -34,7 +34,7 @@ const Input = ({createTodo}) => {
     }
 
     const handleClick = () => {
-        handleCreateTodo()
+        handleCreateTodo();
     }
 
     const handleEnter = (e) => {

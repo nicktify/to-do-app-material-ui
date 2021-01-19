@@ -6,7 +6,7 @@ export default function Form() {
 
     return (
         <div className="search-top">
-            <p>TO DO LIST</p>
+            <p>TODO LIST</p>
             <div className="add-text">
                 <Input 
                 />

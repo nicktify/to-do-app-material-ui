@@ -11,7 +11,9 @@ const TodoList = ({todos}) => {
         todos.map(todo => (
           <div>
             <Todo 
-              
+              text={todo.text}
+              checked={todo.checked}
+              editing={todo.editing}
             />
           </div>
         ))
