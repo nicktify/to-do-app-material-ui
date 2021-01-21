@@ -1,5 +1,7 @@
 import React from 'react';
 import { FormControl, InputLabel, MenuItem, Select, makeStyles} from '@material-ui/core';
+import { filterTodos } from '../redux/actions/index'
+import {connect} from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -8,9 +10,10 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function Filter() {
+const Filter = ({filterTodos}) => {
     const classes = useStyles();
     const handleFilter = (e) => {
+        filterTodos(e.target.value)
     } 
     
     return (
@@ -29,3 +32,13 @@ export default function Filter() {
         </FormControl>
     )
 }
+
+const mapStateToProps = () => {}
+
+const mapActionsToProps = (dispatch) => {
+    return {
+        filterTodos: (todo) => dispatch(filterTodos(todo))
+    }
+}
+
+export default connect(null, mapActionsToProps)(Filter)

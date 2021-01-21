@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {connect} from 'react-redux';
-import { Checkbox, makeStyles } from '@material-ui/core';
+import { Checkbox, makeStyles, TextField } from '@material-ui/core';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import styled from 'styled-components';
 
@@ -23,6 +23,9 @@ const Text = styled.text`
 
 const Todo = ({id, text, checked, editing, editTodo, deleteTodo}) => {
 
+    useEffect(() => {
+
+    }, [])
     const handleChecked = () => {
         editTodo({
             id,
@@ -30,6 +33,15 @@ const Todo = ({id, text, checked, editing, editTodo, deleteTodo}) => {
             checked: !checked,
             editing
         });
+    }
+
+    const handleEdit = () => {
+        editTodo({
+            id,
+            text,
+            checked,
+            editing: true
+        })
     }
 
     const handleDelete = () => {
@@ -45,9 +57,21 @@ const Todo = ({id, text, checked, editing, editTodo, deleteTodo}) => {
                 checked={checked}
                 onChange={handleChecked}
             />
-            <Text>
+            { !editing 
+                
+                ?
+                
+                <Text
+                    onClick={handleEdit}
+                >
                 {text}
-            </Text>
+                </Text>
+                
+                :
+
+                <TextField />
+
+            }
             <DeleteForeverIcon 
                 className={classes.DeleteForeverIcon}
                 onClick={handleDelete}

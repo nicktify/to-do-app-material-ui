@@ -3,7 +3,7 @@ import uuid from 'react-uuid';
 import { TextField, makeStyles } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 
-import { createTodo } from '../redux/actions/index';
+import { createTodo, filterTodos } from '../redux/actions/index';
 import {connect} from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Input = ({createTodo}) => {
+const Input = ({createTodo, filterTodos}) => {
 
     const [input, setInput] = useState()
 
@@ -30,6 +30,7 @@ const Input = ({createTodo}) => {
             checked: false,
             editing: false
         });
+        filterTodos('')
         setInput('');
     }
 
@@ -69,7 +70,8 @@ const mapStateToProps = (state) => {
 
 const mapActionsToProps = (dispatch) => {
     return {
-        createTodo: (todo) => dispatch(createTodo(todo))
+        createTodo: (todo) => dispatch(createTodo(todo)),
+        filterTodos: (status) => dispatch(filterTodos(status))
     }
 }
 

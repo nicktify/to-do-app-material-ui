@@ -2,12 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Todo from './Todo';
 
-const TodoList = ({todos}) => {
+const TodoList = ({filteredTodos}) => {
 
   return (
     <div>
       {
-        todos.map((todo, index) => (
+        filteredTodos.map((todo, index) => (
           <div key={index}>
             <Todo 
               id={todo.id}
@@ -25,7 +25,7 @@ const TodoList = ({todos}) => {
 
 const mapStateToProps = (state) => {
   return {
-    todos: state.todos
+    filteredTodos: state.filteredTodos
   }
 }
 
