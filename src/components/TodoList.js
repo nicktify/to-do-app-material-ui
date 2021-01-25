@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import Todo from './Todo';
 
@@ -6,7 +6,7 @@ const TodoList = ({filteredTodos}) => {
 
   return (
     <div>
-      {
+      { filteredTodos ?
         filteredTodos.map((todo, index) => (
           <div key={index}>
             <Todo 
@@ -17,6 +17,8 @@ const TodoList = ({filteredTodos}) => {
             />
           </div>
         ))
+        : 
+          <div></div>
       }
     </div>
   )

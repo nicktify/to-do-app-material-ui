@@ -16,7 +16,7 @@ const styles = makeStyles(() => ({
     }
 }))
 
-const Text = styled.text`
+const Text = styled.div`
     padding-top: 10px;
     font-size: 20px;
 `
@@ -25,7 +25,9 @@ const Todo = ({id, text, checked, editing, editTodo, deleteTodo}) => {
 
     useEffect(() => {
 
-    }, [])
+    }, [checked])
+
+
     const handleChecked = () => {
         editTodo({
             id,

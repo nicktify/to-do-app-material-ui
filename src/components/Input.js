@@ -15,9 +15,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Input = ({createTodo, filterTodos}) => {
 
-    const [input, setInput] = useState()
-
-    const classes = useStyles();
+    const [input, setInput] = useState('')
 
     const handleInputChange = (e) => {
         setInput(e.target.value);
@@ -41,6 +39,9 @@ const Input = ({createTodo, filterTodos}) => {
     const handleEnter = (e) => {
         if (e.key === 'Enter') handleCreateTodo();
     }
+
+
+    const classes = useStyles();
 
     return (
         <div>
