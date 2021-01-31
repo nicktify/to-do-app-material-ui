@@ -22,6 +22,8 @@ const Text = styled.div`
 `;
 
 const Todo = ({ id, text, checked, editing, status, editTodo, deleteTodo }) => {
+  const [value, setValue] = useState("");
+
   useEffect(() => {
     editTodo({
       id,
@@ -31,6 +33,23 @@ const Todo = ({ id, text, checked, editing, status, editTodo, deleteTodo }) => {
       status: checked ? "complete" : "incomplete",
     });
   }, [checked]);
+
+  const handleInputChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      editTodo({
+        id,
+        text: value,
+        checked,
+        editing: false,
+        status,
+      });
+    }
+  };
+
   const handleChecked = () => {
     editTodo({
       id,
@@ -63,7 +82,16 @@ const Todo = ({ id, text, checked, editing, status, editTodo, deleteTodo }) => {
         checked={checked}
         onChange={handleChecked}
       />
-      {!editing ? <Text onClick={handleEdit}>{text}</Text> : <TextField />}
+      {!editing ? (
+        <Text onClick={handleEdit}>{text}</Text>
+      ) : (
+        <TextField
+          autoFocus
+          value={value}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+        />
+      )}
       <DeleteForeverIcon
         className={classes.DeleteForeverIcon}
         onClick={handleDelete}
