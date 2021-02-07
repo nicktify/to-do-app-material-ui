@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Checkbox, makeStyles, TextField } from "@material-ui/core";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import SaveIcon from '@material-ui/icons/Save';
 import styled from "styled-components";
 
 import { deleteTodo, editTodo } from "../redux/actions";
@@ -10,10 +11,13 @@ const styles = makeStyles(() => ({
   root: {
     height: "30px",
   },
-  DeleteForeverIcon: {
+  button: {
+    "&:hover": {
+      cursor: 'pointer'
+    },
     marginLeft: "10px",
     paddingTop: "12px",
-  },
+  }
 }));
 
 const Text = styled.div`
@@ -32,7 +36,7 @@ const Todo = ({ id, text, checked, editing, status, editTodo, deleteTodo }) => {
       editing,
       status: checked ? "complete" : "incomplete",
     });
-  }, [checked]);
+  }, [checked, text, editTodo, editing, id]);
 
   const handleInputChange = (e) => {
     setValue(e.target.value);
@@ -47,6 +51,15 @@ const Todo = ({ id, text, checked, editing, status, editTodo, deleteTodo }) => {
         editing: false,
         status,
       });
+    }
+    if (e.key === 'Escape') {
+      editTodo({
+        id,
+        text,
+        checked,
+        editing: false,
+        status
+      })
     }
   };
 
@@ -69,6 +82,16 @@ const Todo = ({ id, text, checked, editing, status, editTodo, deleteTodo }) => {
     });
   };
 
+  const handleSave = () => {
+    editTodo({
+      id,
+      text,
+      checked,
+      editing: false,
+      status
+    })
+  }
+
   const handleDelete = () => {
     deleteTodo(id);
   };
@@ -87,15 +110,23 @@ const Todo = ({ id, text, checked, editing, status, editTodo, deleteTodo }) => {
       ) : (
         <TextField
           autoFocus
-          value={value}
+          value={value ? value : text}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
         />
       )}
-      <DeleteForeverIcon
-        className={classes.DeleteForeverIcon}
+      {!editing ? (
+       <DeleteForeverIcon
+        className={classes.button}
         onClick={handleDelete}
       />
+      )
+      :
+      <SaveIcon 
+        className={classes.button}
+        onClick={handleSave}
+      />
+      }
     </div>
   );
 };
