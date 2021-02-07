@@ -21,14 +21,16 @@ const Input = ({ createTodo }) => {
   };
 
   const handleCreateTodo = () => {
-    createTodo({
-      id: uuid(),
-      text: input,
-      checked: false,
-      editing: false,
-      status: "incomplete",
-    });
-    setInput("");
+    if (input) {
+      createTodo({
+        id: uuid(),
+        text: input,
+        checked: false,
+        editing: false,
+        status: "incomplete",
+      });
+      setInput("");
+    }
   };
 
   const handleClick = () => {
