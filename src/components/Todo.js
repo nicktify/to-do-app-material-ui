@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Checkbox, makeStyles, TextField } from "@material-ui/core";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
-import SaveIcon from '@material-ui/icons/Save';
+import SaveIcon from "@material-ui/icons/Save";
 import styled from "styled-components";
 
 import { deleteTodo, editTodo } from "../redux/actions";
@@ -13,11 +13,11 @@ const styles = makeStyles(() => ({
   },
   button: {
     "&:hover": {
-      cursor: 'pointer'
+      cursor: "pointer",
     },
     marginLeft: "10px",
     paddingTop: "12px",
-  }
+  },
 }));
 
 const Text = styled.div`
@@ -26,7 +26,7 @@ const Text = styled.div`
 `;
 
 const Todo = ({ id, text, checked, editing, status, editTodo, deleteTodo }) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(text);
 
   useEffect(() => {
     editTodo({
@@ -44,6 +44,7 @@ const Todo = ({ id, text, checked, editing, status, editTodo, deleteTodo }) => {
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
+      console.log(e.key);
       editTodo({
         id,
         text: value,
@@ -52,14 +53,15 @@ const Todo = ({ id, text, checked, editing, status, editTodo, deleteTodo }) => {
         status,
       });
     }
-    if (e.key === 'Escape') {
+
+    if (e.key === "Escape") {
       editTodo({
         id,
         text,
         checked,
         editing: false,
-        status
-      })
+        status,
+      });
     }
   };
 
@@ -85,12 +87,12 @@ const Todo = ({ id, text, checked, editing, status, editTodo, deleteTodo }) => {
   const handleSave = () => {
     editTodo({
       id,
-      text,
+      text: value,
       checked,
       editing: false,
-      status
-    })
-  }
+      status,
+    });
+  };
 
   const handleDelete = () => {
     deleteTodo(id);
@@ -110,23 +112,16 @@ const Todo = ({ id, text, checked, editing, status, editTodo, deleteTodo }) => {
       ) : (
         <TextField
           autoFocus
-          value={value ? value : text}
+          value={value.length > 0 ? value : text}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
         />
       )}
       {!editing ? (
-       <DeleteForeverIcon
-        className={classes.button}
-        onClick={handleDelete}
-      />
-      )
-      :
-      <SaveIcon 
-        className={classes.button}
-        onClick={handleSave}
-      />
-      }
+        <DeleteForeverIcon className={classes.button} onClick={handleDelete} />
+      ) : (
+        <SaveIcon className={classes.button} onClick={handleSave} />
+      )}
     </div>
   );
 };

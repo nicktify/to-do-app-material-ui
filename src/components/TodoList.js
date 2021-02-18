@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import Todo from "./Todo";
 
 const TodoList = ({ todos, filter }) => {
   return (
     <div>
-      {todos && (filter == "all" || filter == "")
+      {todos && (filter === "all" || filter === "")
         ? todos.map((todo, index) => (
             <div key={index}>
               <Todo
@@ -23,6 +23,7 @@ const TodoList = ({ todos, filter }) => {
                 <div key={index}>
                   <Todo
                     id={todo.id}
+                    todo={todo}
                     text={todo.text}
                     checked={todo.checked}
                     editing={todo.editing}

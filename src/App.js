@@ -11,6 +11,7 @@ export default function App() {
 
   useEffect(() => {
     handleFilter();
+    /* eslint-disable */
   }, [filter, completelist]);
 
   const handleChange = (e) => {

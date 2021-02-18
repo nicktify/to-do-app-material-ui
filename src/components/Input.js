@@ -3,7 +3,7 @@ import uuid from "react-uuid";
 import { TextField, makeStyles } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 
-import { createTodo, filterTodos } from "../redux/actions/index";
+import { createTodo } from "../redux/actions/index";
 import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
