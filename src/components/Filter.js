@@ -33,8 +33,6 @@ const Filter = ({filterTodos}) => {
     )
 }
 
-const mapStateToProps = () => {}
-
 const mapActionsToProps = (dispatch) => {
     return {
         filterTodos: (todo) => dispatch(filterTodos(todo))
