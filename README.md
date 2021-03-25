@@ -1,8 +1,6 @@
-<h1>To do app</h1>
-<br/>
-<h5>Used Technologies:</h5>
-<ul>
-  <li>React.js</li>
-  <li>Redux</li>
-  <li>Material UI</li>
-</ul>
+
+# To do app with Material UI
+
+[Online Page](https://material-todo.netlify.app/)
+
+This simple app was build using React.js, React-Redux, and Material UI.
